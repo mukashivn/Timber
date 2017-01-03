@@ -1,24 +1,31 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingLeft="8dp"
-    android:paddingTop="6dp">
+    android:minHeight="90dp"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    app:cardPreventCornerOverlap="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+    >
 
         <ImageView
             android:id="@+id/albumArt"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignParentLeft="true"
-            android:padding="1dp" />
+            android:padding="1dp"
+            android:layout_margin="8dp"
+        />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,27 +35,35 @@
             android:layout_toRightOf="@+id/albumArt"
             android:orientation="vertical"
             android:paddingLeft="12dp"
-            android:paddingTop="5dp">
+            android:paddingTop="5dp"
+            android:layout_centerVertical="true"
+        >
 
 
             <TextView
                 android:id="@+id/song_title"
-                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:singleLine="true"
-                android:textSize="16sp" />
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Quang Le"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/song_artist"
-                style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:paddingTop="3dp"
-                android:singleLine="true"
-                android:textSize="13sp" />
+                android:fontFamily="sans-serif"
+                android:text="Hai Chuyen Tau Dem "
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            />
 
 
         </LinearLayout>
@@ -61,7 +76,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/popup_menu"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
 
         <com.naman14.timber.widgets.PopupImageView
@@ -73,10 +88,10 @@
             android:layout_marginRight="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="5dp"
-            android:src="@drawable/ic_more_vert_black_24dp" />
+            android:src="@drawable/ic_more_vert_black_24dp"/>
 
 
     </RelativeLayout>
 
 
-</LinearLayout>
+</android.support.v7.widget.CardView>

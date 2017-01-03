@@ -14,6 +14,7 @@
 
 package com.naman14.timber.fragments;
 
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,7 @@ public class SongsFragment extends Fragment implements MusicStateListener {
     private SongsListAdapter mAdapter;
     private RecyclerView recyclerView;
     private PreferencesUtility mPreferences;
+    private RecyclerView.ItemDecoration itemDecoration;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -155,10 +157,36 @@ public class SongsFragment extends Fragment implements MusicStateListener {
             if (getActivity() != null)
                 recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
 
+            setItemDecoration();
         }
 
         @Override
         protected void onPreExecute() {
+        }
+    }
+    private void setItemDecoration(){
+        int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
+        itemDecoration = new SpacesItemDecoration(spacingInPixels);
+        recyclerView.addItemDecoration(itemDecoration);
+
+    }
+    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+
+        public SpacesItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view,
+                                   RecyclerView parent, RecyclerView.State state) {
+
+
+            outRect.left = space;
+            outRect.top = space;
+            outRect.right = space;
+            outRect.bottom = space;
+
         }
     }
 }

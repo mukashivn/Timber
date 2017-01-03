@@ -1155,7 +1155,11 @@ public class MusicService extends Service {
                         retrievePlaybackAction(TOGGLEPAUSE_ACTION))
                 .addAction(R.drawable.ic_skip_next_white_36dp,
                         "",
-                        retrievePlaybackAction(NEXT_ACTION));
+                        retrievePlaybackAction(NEXT_ACTION))
+                .addAction(R.drawable.ic_close,"",retrievePlaybackAction(STOP_ACTION))
+
+            ;
+
 
         if (TimberUtils.isJellyBeanMR1()) {
             builder.setShowWhen(false);

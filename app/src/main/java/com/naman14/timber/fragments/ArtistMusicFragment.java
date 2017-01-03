@@ -14,6 +14,7 @@
 
 package com.naman14.timber.fragments;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ public class ArtistMusicFragment extends Fragment {
     public static RecyclerView songsRecyclerview;
     long artistID = -1;
     ArtistSongAdapter mSongAdapter;
+    private RecyclerView.ItemDecoration itemDecoration;
 
     public static ArtistMusicFragment newInstance(long id) {
         ArtistMusicFragment fragment = new ArtistMusicFragment();
@@ -78,9 +80,37 @@ public class ArtistMusicFragment extends Fragment {
         songList.add(0, new Song(-1, -1, -1, "dummy", "dummy", "dummy", -1, -1));
 
         mSongAdapter = new ArtistSongAdapter(getActivity(), songList, artistID);
-        songsRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        //songsRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        setItemDecoration();
         songsRecyclerview.setAdapter(mSongAdapter);
     }
+
+    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+
+        public SpacesItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view,
+                                   RecyclerView parent, RecyclerView.State state) {
+
+
+            outRect.left = space;
+            outRect.top = space;
+            outRect.right = space;
+            outRect.bottom = space;
+
+        }
+    }
+    private void setItemDecoration(){
+        int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
+        itemDecoration = new SpacesItemDecoration(spacingInPixels);
+        songsRecyclerview.addItemDecoration(itemDecoration);
+
+    }
+
 
 
 }

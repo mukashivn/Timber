@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="55dp"
     android:layout_gravity="top"
-    android:background="?attr/windowBackground">
+    android:background="#3C5F78">
 
     <com.naman14.timber.widgets.SquareImageView
         android:id="@+id/album_art_nowplayingcard"
@@ -13,7 +13,9 @@
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_empty_music2" />
+        android:src="@drawable/ic_empty_music2"
+        android:padding="4dp"
+    />
 
     <LinearLayout
         android:id="@+id/content"
@@ -43,7 +45,10 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Demons"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#DDF9FF"
+        />
 
         <TextView
             android:id="@+id/artist"
@@ -55,7 +60,9 @@
             android:maxLength="20"
             android:maxLines="1"
             android:text="John Doe and Band"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textColor="#DDF9FF"
+        />
 
     </LinearLayout>
 

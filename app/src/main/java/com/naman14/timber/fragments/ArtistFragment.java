@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,7 +44,7 @@ public class ArtistFragment extends Fragment {
     private ArtistAdapter mAdapter;
     private RecyclerView recyclerView;
     private FastScroller fastScroller;
-    private GridLayoutManager layoutManager;
+    private StaggeredGridLayoutManager layoutManager;
     private RecyclerView.ItemDecoration itemDecoration;
     private PreferencesUtility mPreferences;
     private boolean isGrid;
@@ -72,10 +73,10 @@ public class ArtistFragment extends Fragment {
 
     private void setLayoutManager() {
         if (isGrid) {
-            layoutManager = new GridLayoutManager(getActivity(), 2);
+            layoutManager = new StaggeredGridLayoutManager(2, 1);
             fastScroller.setVisibility(View.GONE);
         } else {
-            layoutManager = new GridLayoutManager(getActivity(), 1);
+            layoutManager = new StaggeredGridLayoutManager(1, 1);
             fastScroller.setVisibility(View.VISIBLE);
             fastScroller.setRecyclerView(recyclerView);
         }
@@ -87,7 +88,8 @@ public class ArtistFragment extends Fragment {
             int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
             itemDecoration = new SpacesItemDecoration(spacingInPixels);
         } else {
-            itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
+            int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
+            itemDecoration = new SpacesItemDecoration(spacingInPixels);
         }
         recyclerView.addItemDecoration(itemDecoration);
     }

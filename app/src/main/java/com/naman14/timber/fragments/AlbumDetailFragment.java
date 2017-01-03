@@ -17,6 +17,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -84,6 +85,8 @@ public class AlbumDetailFragment extends Fragment {
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     FloatingActionButton fab;
+
+    private RecyclerView.ItemDecoration itemDecoration;
 
     private boolean loadFailed = false;
 
@@ -265,8 +268,8 @@ public class AlbumDetailFragment extends Fragment {
 
         List<Song> songList = AlbumSongLoader.getSongsForAlbum(getActivity(), albumID);
         mAdapter = new AlbumSongsAdapter(getActivity(), songList, albumID);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerView.setAdapter(mAdapter);
+        setItemDecoration();
 
     }
 
@@ -354,6 +357,33 @@ public class AlbumDetailFragment extends Fragment {
         public void onTransitionStart(Transition paramTransition) {
             FabAnimationUtils.scaleOut(fab, 0, null);
         }
+
+    }
+
+    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+
+        public SpacesItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view,
+                                   RecyclerView parent, RecyclerView.State state) {
+
+
+            outRect.left = space;
+            outRect.top = space;
+            outRect.right = space;
+            outRect.bottom = space;
+
+        }
+    }
+
+    private void setItemDecoration(){
+        int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
+        itemDecoration = new SpacesItemDecoration(spacingInPixels);
+        recyclerView.addItemDecoration(itemDecoration);
 
     }
 

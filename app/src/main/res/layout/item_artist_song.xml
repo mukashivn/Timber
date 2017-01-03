@@ -1,56 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="5dp"
-    android:paddingTop="8dp"
+    android:minHeight="90dp"
+    android:orientation="horizontal"
     android:paddingBottom="8dp"
-    android:background="?attr/selectableItemBackground">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    app:cardPreventCornerOverlap="false"
+>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+    >
 
         <ImageView
+            android:id="@+id/albumArt"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/albumArt"
-            android:padding="1dp"
             android:layout_alignParentLeft="true"
-            />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+        />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/currentlyPlayingIndicator"
+            android:layout_toRightOf="@+id/albumArt"
             android:orientation="vertical"
             android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:layout_toRightOf="@+id/albumArt"
-            android:layout_toLeftOf="@+id/currentlyPlayingIndicator"
-            android:layout_marginRight="10dp">
+            android:paddingTop="5dp">
 
 
             <TextView
                 android:id="@+id/song_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ellipsize="end"
-                android:singleLine="true"
-                style="@style/TextAppearance.AppCompat.Body1"/>
+                android:fontFamily="sans-serif-medium"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="Quang Le"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
+            />
 
             <TextView
                 android:id="@+id/song_album"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
-                android:textSize="12sp"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:singleLine="true"
-                style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"/>
-
+                android:fontFamily="sans-serif"
+                android:text="Hai Chuyen Tau Dem "
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
 
 
         </LinearLayout>
@@ -59,13 +69,15 @@
             android:id="@+id/currentlyPlayingIndicator"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/popup_menu"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="center"
+            android:visibility="invisible"
             app:materialIconColor="#fff"
             app:materialIconSize="35dp"
-            android:visibility="invisible"
-            android:layout_toLeftOf="@+id/popup_menu"/>
+        />
 
         <com.naman14.timber.widgets.PopupImageView
             android:id="@+id/popup_menu"
@@ -76,11 +88,10 @@
             android:layout_marginRight="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:foregroundTint="#434343"
-            android:padding="5dp"
-            android:src="@drawable/ic_more_vert_black_24dp" />
+            android:padding="15dp"
+            android:src="@drawable/ic_more_vert_black_24dp"/>
 
     </RelativeLayout>
 
 
-
-</LinearLayout>
+</android.support.v7.widget.CardView>

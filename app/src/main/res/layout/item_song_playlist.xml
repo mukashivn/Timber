@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingTop="6dp">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground"
+              android:minHeight="60dp"
+              android:orientation="vertical"
+              android:paddingBottom="6dp"
+              android:paddingTop="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,15 +21,18 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="center"
             app:materialIcon="drag_vertical"
+            android:layout_centerVertical="true"
             app:materialIconColor="@android:color/white"
-            app:materialIconSize="30dp" />
+            app:materialIconSize="30dp"/>
 
         <ImageView
             android:id="@+id/albumArt"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_toRightOf="@+id/reorder"
             android:padding="1dp"
-            android:layout_toRightOf="@+id/reorder"/>
+            android:layout_centerVertical="true"
+        />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,20 +49,28 @@
                 android:id="@+id/song_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:singleLine="true"
+                android:fontFamily="sans-serif-medium"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="Quang Le"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textStyle="bold"
+            />
 
             <TextView
                 android:id="@+id/song_artist"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:paddingTop="3dp"
-                android:singleLine="true"
+                android:fontFamily="sans-serif"
+                android:text="Hai Chuyen Tau Dem "
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textColor="#99ffffff"
-                android:textSize="13sp" />
+            />
 
 
         </LinearLayout>
@@ -71,7 +83,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/popup_menu"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/popup_menu"
@@ -82,9 +94,9 @@
             android:layout_marginRight="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:foregroundTint="#434343"
-            android:padding="5dp"
+            android:padding="10dp"
             android:src="@drawable/ic_more_vert_white_24dp"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat"/>
 
 
     </RelativeLayout>
