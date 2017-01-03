@@ -29,11 +29,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.SearchAdapter;
 import com.naman14.timber.dataloaders.AlbumLoader;
 import com.naman14.timber.dataloaders.ArtistLoader;
 import com.naman14.timber.dataloaders.SongLoader;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.models.Album;
 import com.naman14.timber.models.Artist;
 import com.naman14.timber.models.Song;
@@ -60,6 +62,8 @@ public class SearchActivity extends BaseThemedActivity implements SearchView.OnQ
 
     private List<Object> searchResults = Collections.emptyList();
 
+    NativeExpressAdView adView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -76,6 +80,9 @@ public class SearchActivity extends BaseThemedActivity implements SearchView.OnQ
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SearchAdapter(this);
         recyclerView.setAdapter(adapter);
+
+        adView = (NativeExpressAdView)findViewById(R.id.adView);
+        AdsUtils.loadNativeAds(adView);
     }
 
 

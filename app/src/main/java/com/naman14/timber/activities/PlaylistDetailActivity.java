@@ -42,6 +42,7 @@ import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.afollestad.appthemeengine.customizers.ATEToolbarCustomizer;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.SongsListAdapter;
 import com.naman14.timber.dataloaders.LastAddedLoader;
@@ -49,6 +50,7 @@ import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dataloaders.PlaylistSongLoader;
 import com.naman14.timber.dataloaders.SongLoader;
 import com.naman14.timber.dataloaders.TopTracksLoader;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.listeners.SimplelTransitionListener;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.Constants;
@@ -100,6 +102,7 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
     private View foreground;
     private boolean animate;
 
+    NativeExpressAdView adView;
     @TargetApi(21)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,6 +117,7 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+
 
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_LASTADDED, playlistLastAdded);
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_RECENT, playlistRecents);
@@ -135,6 +139,9 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
         } else {
             setUpSongs();
         }
+        //Find and loadAds
+        adView = (NativeExpressAdView)findViewById(R.id.adView);
+        AdsUtils.loadNativeAds(adView);
 
     }
 

@@ -298,8 +298,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music);
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
             navigationView.getMenu().findItem(R.id.nav_help).setIcon(R.drawable.help_circle);
-            navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information);
-            navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_black);
+
         } else {
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music_white);
             navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play_white);
@@ -308,17 +307,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
             navigationView.getMenu().findItem(R.id.nav_help).setIcon(R.drawable.help_circle_white);
-            navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information_white);
-            navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_white);
+
         }
 
-        try {
-            if (!BillingProcessor.isIabServiceAvailable(this)) {
-                navigationView.getMenu().removeItem(R.id.nav_donate);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -350,23 +341,19 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 break;
             case R.id.nav_help:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                Uri data = Uri.parse("mailto:namandwivedi14@gmail.com");
+                Uri data = Uri.parse("mailto:kim.chu.zhu@gmail.com");
                 intent.setData(data);
                 startActivity(intent);
                 break;
-            case R.id.nav_about:
-                mDrawerLayout.closeDrawers();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Helpers.showAbout(MainActivity.this);
-                    }
-                }, 350);
-
+            case R.id.nav_rate_me:
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+                }
                 break;
-            case R.id.nav_donate:
-                startActivity(new Intent(MainActivity.this, DonateActivity.class));
+            case R.id.nav_more_app:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:" + getResources().getString(R.string.develper_name))));
                 break;
         }
 

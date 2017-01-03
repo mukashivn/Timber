@@ -36,10 +36,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.appthemeengine.ATE;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.PlaylistAdapter;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.subfragments.PlaylistPagerFragment;
 import com.naman14.timber.utils.Constants;
@@ -66,7 +68,7 @@ public class PlaylistFragment extends Fragment {
     private PlaylistAdapter mAdapter;
 
     private List<Playlist> playlists = new ArrayList<>();
-
+    NativeExpressAdView adView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +105,8 @@ public class PlaylistFragment extends Fragment {
             initRecyclerView();
         }
 
+        //Find adview
+        adView = (NativeExpressAdView)rootView.findViewById(R.id.adView);
         return rootView;
 
     }
@@ -201,6 +205,9 @@ public class PlaylistFragment extends Fragment {
         } else {
             ATE.apply(this, "light_theme");
         }
+
+        //Load ads
+        AdsUtils.loadNativeAds(adView);
     }
 
     @Override

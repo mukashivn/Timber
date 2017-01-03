@@ -29,11 +29,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.appthemeengine.ATE;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.MusicPlayer;
 import com.naman14.timber.R;
 import com.naman14.timber.activities.BaseActivity;
 import com.naman14.timber.adapters.PlayingQueueAdapter;
 import com.naman14.timber.dataloaders.QueueLoader;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.listeners.MusicStateListener;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.widgets.DragSortRecycler;
@@ -42,6 +44,7 @@ public class QueueFragment extends Fragment implements MusicStateListener {
 
     private PlayingQueueAdapter mAdapter;
     private RecyclerView recyclerView;
+    NativeExpressAdView adView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ public class QueueFragment extends Fragment implements MusicStateListener {
         new loadQueueSongs().execute("");
         ((BaseActivity) getActivity()).setMusicStateListenerListener(this);
 
+        //find ads
+        adView = (NativeExpressAdView)rootView.findViewById(R.id.adView);
         return rootView;
     }
 
@@ -74,6 +79,7 @@ public class QueueFragment extends Fragment implements MusicStateListener {
         } else {
             ATE.apply(this, "light_theme");
         }
+        AdsUtils.loadNativeAds(adView);
     }
 
     public void restartLoader() {

@@ -21,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -34,8 +35,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.dataloaders.ArtistLoader;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.lastfmapi.LastFmClient;
 import com.naman14.timber.lastfmapi.callbacks.ArtistInfoListener;
 import com.naman14.timber.lastfmapi.models.ArtistQuery;
@@ -60,6 +63,7 @@ public class ArtistDetailFragment extends Fragment {
     AppBarLayout appBarLayout;
     boolean largeImageLoaded = false;
     int primaryColor = -1;
+    NativeExpressAdView adView;
 
     public static ArtistDetailFragment newInstance(long id, boolean useTransition, String transitionName) {
         ArtistDetailFragment fragment = new ArtistDetailFragment();
@@ -101,8 +105,16 @@ public class ArtistDetailFragment extends Fragment {
 
         getChildFragmentManager().beginTransaction().replace(R.id.container, ArtistMusicFragment.newInstance(artistID)).commit();
 
+        //Find adview
+        adView = (NativeExpressAdView)rootView.findViewById(R.id.adView);
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        AdsUtils.loadNativeAds(adView);
     }
 
     private void setupToolbar() {

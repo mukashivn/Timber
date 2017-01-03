@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+
     <include layout="@layout/include_list_viewpager" />
 
     <android.support.design.widget.NavigationView

@@ -17,8 +17,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.afollestad.appthemeengine.ATE;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.FolderAdapter;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.widgets.DividerItemDecoration;
 import com.naman14.timber.widgets.FastScroller;
@@ -35,6 +37,7 @@ public class FoldersFragment extends Fragment {
     private RecyclerView recyclerView;
     private FastScroller fastScroller;
     private ProgressBar mProgressBar;
+    NativeExpressAdView adView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class FoldersFragment extends Fragment {
 
         if (getActivity() != null)
             new loadFolders().execute("");
+
+        adView = (NativeExpressAdView)rootView.findViewById(R.id.adView);
         return rootView;
     }
 
@@ -73,6 +78,7 @@ public class FoldersFragment extends Fragment {
             mAdapter.applyTheme(dark);
             mAdapter.notifyDataSetChanged();
         }
+        AdsUtils.loadNativeAds(adView);
     }
 
     private void setItemDecoration() {

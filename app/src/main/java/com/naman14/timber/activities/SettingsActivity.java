@@ -29,8 +29,10 @@ import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.Config;
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.fragments.SettingsFragment;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.subfragments.StyleSelectorFragment;
 import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.PreferencesUtility;
@@ -38,7 +40,7 @@ import com.naman14.timber.utils.PreferencesUtility;
 public class SettingsActivity extends BaseThemedActivity implements ColorChooserDialog.ColorCallback, ATEActivityThemeCustomizer {
 
     String action;
-
+    NativeExpressAdView adView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -70,6 +72,10 @@ public class SettingsActivity extends BaseThemedActivity implements ColorChooser
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         }
+
+        //Find ads and load
+        adView = (NativeExpressAdView)findViewById(R.id.adView);
+        AdsUtils.loadNativeAds(adView);
 
     }
 

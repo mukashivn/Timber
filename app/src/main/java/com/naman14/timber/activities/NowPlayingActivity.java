@@ -12,7 +12,9 @@ import android.support.v4.app.FragmentManager;
 import com.afollestad.appthemeengine.Config;
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.afollestad.appthemeengine.customizers.ATEToolbarCustomizer;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.PreferencesUtility;
@@ -22,10 +24,15 @@ import com.naman14.timber.utils.PreferencesUtility;
  */
 public class NowPlayingActivity extends BaseActivity implements ATEActivityThemeCustomizer, ATEToolbarCustomizer {
 
+    NativeExpressAdView adView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
+        //Find adview and load adview
+        adView = (NativeExpressAdView)findViewById(R.id.adView);
+        AdsUtils.loadNativeAds(adView);
+
         SharedPreferences prefs = getSharedPreferences(Constants.FRAGMENT_ID, Context.MODE_PRIVATE);
         String fragmentID = prefs.getString(Constants.NOWPLAYING_FRAGMENT_ID, Constants.TIMBER3);
 

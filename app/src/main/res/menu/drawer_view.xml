@@ -37,17 +37,19 @@
             android:title="@string/settings" />
 
         <item
-
-            android:id="@+id/nav_about"
-            android:title="@string/about" />
-
-        <item
-            android:id="@+id/nav_donate"
-            android:title="Support development" />
-
-        <item
             android:id="@+id/nav_help"
             android:title="@string/help_and_feedback" />
+
+        <item
+            android:id="@+id/nav_rate_me"
+            android:title="Rate me 5 star"
+            android:icon="@drawable/ic_rate_me"
+        />
+        <item
+            android:id="@+id/nav_more_app"
+            android:title="More App"
+            android:icon="@drawable/ic_more_app"
+        />
     </group>
 
 </menu>

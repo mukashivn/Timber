@@ -30,6 +30,9 @@ import android.view.ViewGroup;
 
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.Config;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.R;
 import com.naman14.timber.utils.ATEUtils;
 import com.naman14.timber.utils.Helpers;
@@ -42,6 +45,7 @@ public class MainFragment extends Fragment {
 
     PreferencesUtility mPreferences;
     ViewPager viewPager;
+    NativeExpressAdView adView;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -71,6 +75,10 @@ public class MainFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        //Setup ads
+        adView = (NativeExpressAdView) rootView.findViewById(R.id.adView);
+
+
         return rootView;
 
     }
@@ -84,6 +92,24 @@ public class MainFragment extends Fragment {
             ATE.apply(this, "light_theme");
         }
         viewPager.setCurrentItem(mPreferences.getStartPageIndex());
+
+        //Load ads
+        AdRequest request = new AdRequest.Builder().addTestDevice("7F02914F9C4D5DEB8EF81FD66BFA0A0A")
+            .build();
+        adView.loadAd(request);
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                adView.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {

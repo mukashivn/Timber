@@ -139,4 +139,9 @@
     <string name="nothing_found">Nothing found</string>
     <string name="folders">Folders</string>
 
+    <!--Ads ID-->
+    <string name="ad_native_id">ca-app-pub-9754821671573066/3692625835</string>
+    <string name="ad_interstitial">ca-app-pub-9754821671573066/9739159430</string>
+    <string name="ad_banner">ca-app-pub-9754821671573066/5668886639</string>
+    <string name="develper_name">iMobifone</string>
 </resources>

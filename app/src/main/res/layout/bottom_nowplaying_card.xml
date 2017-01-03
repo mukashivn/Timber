@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="55dp"
     android:layout_gravity="top"
-    android:background="#3C5F78">
+    android:background="#883C5F78">
 
     <com.naman14.timber.widgets.SquareImageView
         android:id="@+id/album_art_nowplayingcard"

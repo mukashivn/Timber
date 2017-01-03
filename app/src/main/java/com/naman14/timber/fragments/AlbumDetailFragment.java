@@ -21,6 +21,7 @@ import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -42,11 +43,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.appthemeengine.Config;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.naman14.timber.MusicPlayer;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.AlbumSongsAdapter;
 import com.naman14.timber.dataloaders.AlbumLoader;
 import com.naman14.timber.dataloaders.AlbumSongLoader;
+import com.naman14.timber.helpers.AdsUtils;
 import com.naman14.timber.listeners.SimplelTransitionListener;
 import com.naman14.timber.models.Album;
 import com.naman14.timber.models.Song;
@@ -93,6 +96,8 @@ public class AlbumDetailFragment extends Fragment {
     private PreferencesUtility mPreferences;
     private Context context;
     private int primaryColor = -1;
+
+    NativeExpressAdView adView;
 
     public static AlbumDetailFragment newInstance(long id, boolean useTransition, String transitionName) {
         AlbumDetailFragment fragment = new AlbumDetailFragment();
@@ -160,8 +165,15 @@ public class AlbumDetailFragment extends Fragment {
                 }, 150);
             }
         });
-
+        //Find adview
+        adView = (NativeExpressAdView)rootView.findViewById(R.id.adView);
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        AdsUtils.loadNativeAds(adView);
     }
 
     private void setupToolbar() {
